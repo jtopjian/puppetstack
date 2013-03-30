@@ -11,7 +11,7 @@ class puppetstack-all-in-one {
     verbose           => 'True',
     debug             => 'True',
     auth_host         => $keystone_host,
-    keystone_password => $glance_keystone_password,
+    keystone_password => $glance_user_password,
     sql_connection    => $glance_db,
   }
 
@@ -20,7 +20,7 @@ class puppetstack-all-in-one {
     verbose           => 'True',
     debug             => 'True',
     auth_host         => $keystone_host,
-    keystone_password => $glance_keystone_password,
+    keystone_password => $glance_user_password,
     sql_connection    => $glance_db,
   }
 
@@ -88,7 +88,7 @@ class puppetstack-all-in-one {
 
   # cinder api
   class { '::cinder::api':
-    keystone_password  => $cinder_keystone_password,
+    keystone_password  => $cinder_user_password,
     keystone_auth_host => $keystone_host,
     keystone_tenant    => 'services',
   }

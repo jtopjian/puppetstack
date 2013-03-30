@@ -1,6 +1,6 @@
 # Network
 $public_interface  = 'eth0'
-$private_interface = 'eth0'
+$private_interface = 'eth0:0'
 $controller_ip = '10.16.0.30'
 $keystone_host = $controller_ip
 
@@ -35,7 +35,7 @@ $rabbit_password    = 'password'
 $rabbit_user        = 'nova'
 $libvirt_type       = 'qemu'
 $network_type       = 'nova'
-$fixed_range        = '10.0.0.0/24'
+$fixed_range        = '10.255.0.0/24'
 $num_networks       = 1
 
 # Horizon

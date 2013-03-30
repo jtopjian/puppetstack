@@ -1,3 +1,7 @@
+import 'keystone.pp'
+import 'mysql.pp'
+import 'params.pp'
+
 # cloud configuration
 class puppetstack-controller {
 
@@ -96,3 +100,7 @@ class puppetstack-controller {
   }
 
 }
+
+class { 'puppetstack-mysql': } ->
+class { 'puppetstack-keystone': } ->
+class { 'puppetstack-controller': }

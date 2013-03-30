@@ -15,6 +15,7 @@ class puppetstack-mysql {
   class { '::keystone::db::mysql':
     password      => $keystone_mysql_password,
     allowed_hosts => $mysql_allowed_hosts,
+    user          => 'keystone',
   }
   
   # Create the Glance db

@@ -1,4 +1,8 @@
 #!/bin/bash
+apt-get update && apt-get install -y ubuntu-cloud-keyring
+apt-get update
+echo alias nova=\"nova --no-cache\" >> ~/.bashrc
+source ~/.bashrc
 cd /etc/puppet/modules
 git clone http://github.com/puppetlabs/puppetlabs-openstack openstack
 git clone http://github.com/puppetlabs/puppetlabs-nova nova

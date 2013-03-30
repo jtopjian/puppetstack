@@ -1,4 +1,5 @@
-#
+import 'params.pp'
+
 class puppetstack-compute {
 
   ## Nova
@@ -38,3 +39,5 @@ class puppetstack-compute {
   class { 'cinder::volume': }
 
 }
+
+class { 'puppetstack-compute': }
