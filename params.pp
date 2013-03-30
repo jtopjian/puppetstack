@@ -1,6 +1,6 @@
 # Network
 $public_interface  = 'eth0'
-$private_interface = 'eth0:0'
+$private_interface = 'eth0'
 $controller_ip = '10.16.0.30'
 $keystone_host = $controller_ip
 
