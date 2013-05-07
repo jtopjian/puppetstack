@@ -1,15 +1,16 @@
 #!/bin/bash
 apt-get update && apt-get install -y ubuntu-cloud-keyring
+cp releases/grizzly.list /etc/apt/sources.list.d/
 apt-get update
-echo alias nova=\"nova --no-cache\" >> ~/.bashrc
-source ~/.bashrc
+apt-get install -y vim puppet git rake
 cd /etc/puppet/modules
-git clone http://github.com/puppetlabs/puppetlabs-openstack openstack
-git clone http://github.com/puppetlabs/puppetlabs-nova nova
-git clone http://github.com/puppetlabs/puppetlabs-glance glance
-git clone http://github.com/puppetlabs/puppetlabs-keystone keystone
-git clone http://github.com/puppetlabs/puppetlabs-horizon horizon
-git clone http://github.com/puppetlabs/puppetlabs-cinder cinder
+git clone http://github.com/stackforge/puppet-openstack openstack
+git clone http://github.com/stackforge/puppet-nova nova
+git clone http://github.com/stackforge/puppet-glance glance
+git clone http://github.com/stackforge/puppet-keystone keystone
+git clone http://github.com/stackforge/puppet-horizon horizon
+git clone http://github.com/stackforge/puppet-cinder cinder
+git clone http://github.com/stackforge/puppet-quantum quantum
 git clone http://github.com/puppetlabs/puppetlabs-apache apache
 git clone http://github.com/puppetlabs/puppetlabs-stdlib stdlib
 git clone http://github.com/puppetlabs/puppetlabs-mysql mysql

@@ -62,7 +62,12 @@ class puppetstack-all-in-one {
     enabled           => true,
   }
 
-  class { '::nova::compute': enabled => true }
+  class { '::nova::compute':
+    enabled                       => true,
+    vnc_enabled                   => true,
+    vncserver_proxyclient_address => '127.0.0.1',
+    vncproxy_host                 => '0.0.0.0',
+  }
   class { '::nova::compute::libvirt':
     libvirt_type => $libvirt_type,
   }
@@ -105,6 +110,11 @@ class puppetstack-all-in-one {
     admin_password       => $keystone_admin_password,
     keystone_admin_token => $keystone_admin_token,
     admin_tenant         => $keystone_admin_tenant,
+  }
+
+  ## Horizon
+  class { '::horizon':
+    secret_key => $horizon_secret_key,
   }
 
 }

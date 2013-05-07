@@ -75,10 +75,11 @@ class puppetstack-controller {
 
   ## Cinder
   # base
-  class { '::cinder::base':
+  class { '::cinder':
     verbose         => 'True',
     sql_connection  => $cinder_db,
     rabbit_password => $rabbit_password,
+    rabbit_userid   => $rabbit_user,
   }
 
   # cinder api
@@ -93,10 +94,15 @@ class puppetstack-controller {
 
   ## Generate an openrc file
   class { '::openstack::auth_file':
-    controller_node      => $keystone_public_ip,
+    controller_node      => $controller_ip,
     admin_password       => $keystone_admin_password,
     keystone_admin_token => $keystone_admin_token,
     admin_tenant         => $keystone_admin_tenant,
+  }
+
+  ## Horizon
+  class { '::horizon':
+    secret_key => $horizon_secret_key,
   }
 
 }
