@@ -33,6 +33,9 @@ Review the `init.sh` script. This is a simple bash script that:
 
 If everything looks good to you, run the script.
 
+__Note__: There's currently a bug in the Horizon module that needs fixed before going further.
+Please see [this](https://github.com/stackforge/puppet-horizon/commit/8fad3d9ad97ec5e99f1641dcf61ba0d494ef1e09) patch for the fix.
+
 ### params.pp
 
 Next, review the `params.pp` Puppet manifest. This file contains various passwords
