@@ -27,11 +27,6 @@ class puppetstack-compute {
     vncserver_listen => '0.0.0.0',
   }
 
-  # extra nova
-  nova_config {
-    'volume_api_class': value => 'nova.volume.cinder.API';
-  }
-
 }
 
 class { 'puppetstack-compute': }

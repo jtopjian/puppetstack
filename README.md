@@ -13,13 +13,22 @@ following design choices:
 
 ## Usage
 
+Puppetstack is *not* a Puppet module. It's simply a repository of Puppet manifests that are to be run in a standalone Puppet environment -- not a server/client environment.
+
+Puppetstack can currently be used to install three types of OpenStack server roles:
+
+1. All-in-one
+2. Cloud Controller
+3. Compute Node
+
+No matter which role you choose, you will need to perform the following steps on *each* server:
+
 ### init.sh
 
 Review the `init.sh` script. This is a simple bash script that:
 
   * Installs the ubuntu-cloud-keyring package
   * Adds the Grizzly repo to apt
-  * Installs some basic packages: vim, puppet, git, and rake
   * Downloads several Puppet modules to `/etc/puppet/modules`
 
 If everything looks good to you, run the script.
@@ -34,14 +43,7 @@ For example, if you are installing OpenStack in a virtualized environment, chang
 
 ### Install OpenStack
 
-Once that's done, decide what role you want your current server to be:
-
-  * All-in-One
-  * Cloud Controller
-  * Compute Node
-
-Note that these scripts are able to be run without a Puppet Master server. In order
-to install OpenStack on multiple servers, copy this repo to each server.
+Once these steps are done on each server, apply the role to the server:
 
 #### All in One
 

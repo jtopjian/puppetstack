@@ -11,7 +11,7 @@ class puppetstack-controller {
     verbose           => 'True',
     debug             => 'True',
     auth_host         => $keystone_host,
-    keystone_password => $glance_keystone_password,
+    keystone_password => $glance_user_password,
     sql_connection    => $glance_db,
   }
 
@@ -20,7 +20,7 @@ class puppetstack-controller {
     verbose           => 'True',
     debug             => 'True',
     auth_host         => $keystone_host,
-    keystone_password => $glance_keystone_password,
+    keystone_password => $glance_user_password,
     sql_connection    => $glance_db,
   }
 
