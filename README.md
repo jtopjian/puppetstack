@@ -2,9 +2,7 @@
 
 ## About
 
-This is a small repo that can be used to install and configure a
-very basic OpenStack environment by using Puppet. It assumes the
-following design choices:
+This is a small repo that can be used to install and configure a very basic OpenStack environment by using Puppet. It assumes the following design choices:
 
   * Glance w/ file-backend
   * RabbitMQ
@@ -23,6 +21,22 @@ Puppetstack can currently be used to install three types of OpenStack server rol
 
 No matter which role you choose, you will need to perform the following steps on *each* server:
 
+### Networking
+
+Make sure the network configuration between your servers is correct before proceeding. The `network` folder contains two example scripts for unusual (but common for testing) configurations.
+
+#### single-interface.sh
+
+This script is for servers that only have one interface. It will create a bridge interface and add the real interface to the bridge. If you configure OpenStack for FlatDHCP networking, make sure to set the `flat_interface` as the same name as the bridge.
+
+#### nested-cloud.sh
+
+This script is for running multi-host OpenStack clouds inside an existing OpenStack environment. In order for multiple OpenStack nodes to be able to fully communicate with each other inside an existing cloud, a Layer 2 tunnel needs to be created.
+
+This script will create a `gretap` tunnel between two endpoints. The tunnel is attached to the real interface of the server (as discovered by the IP addresses you choose to use). Next, a bridge is created and the `gretap` tunnel is added to the bridge. Finally, the bridge is given its own prive IP address. With all of this in place, this effectively creates an entire L2/L3 network embedded inside the host cloud.
+
+Note that a `gretap` tunnel needs created for all combinations of nodes, so it's easiest to just work with one cloud controller and one compute node (total of two tunnels). Adding a second compute node would require six tunnels.
+
 ### init.sh
 
 Review the `init.sh` script. This is a simple bash script that:
@@ -32,9 +46,6 @@ Review the `init.sh` script. This is a simple bash script that:
   * Downloads several Puppet modules to `/etc/puppet/modules`
 
 If everything looks good to you, run the script.
-
-__Note__: There's currently a bug in the Horizon module that needs fixed before going further.
-Please see [this](https://github.com/stackforge/puppet-horizon/commit/8fad3d9ad97ec5e99f1641dcf61ba0d494ef1e09) patch for the fix.
 
 ### params.pp
 
