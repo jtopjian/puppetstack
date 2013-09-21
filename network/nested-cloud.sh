@@ -5,10 +5,10 @@ auto lo
 iface lo inet loopback
 
 auto eth0
-iface eth0 inet dhcp
-pre-up ip tunnel add gt_cloud mode gretap remote XXX local XXX nopmtudisc
-up ip link set mtu 1500 gt_cloud
-post-down ip tunnel del gt_cloud
+iface eth0 inet manual
+pre-up ip link add gt_cloud type gretap remote XXX local XXX nopmtudisc
+up ifconfig gt_cloud mtu 1500 up
+post-down ip link del gt_cloud
 
 auto br100
 iface br100 inet static
